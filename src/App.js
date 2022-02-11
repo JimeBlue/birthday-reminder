@@ -13,26 +13,32 @@ function App() {
     setInput((values) => ({ ...values, [name]: value }));
   };
 
-  const addBirthday = () => {
+  const addBirthday = (event) => {
+    event.preventDefault();
     setBirthdays([...birthdays, input]);
+    setInput({});
   };
+
   return (
     <div className="App">
       <h1>Birthday Form</h1>
-      <input
-        type="text"
-        name="name"
-        value={input.name}
-        onChange={handleChange}
-      />
-      <input
-        type="text"
-        name="profession"
-        value={input.profession}
-        onChange={handleChange}
-      />
-
-      <button onClick={addBirthday}>Add birthday</button>
+      <form>
+        <input
+          type="text"
+          name="name"
+          value={input.name}
+          onChange={handleChange}
+        />
+        <input
+          type="text"
+          name="profession"
+          value={input.profession}
+          onChange={handleChange}
+        />
+        <button type="submit" onClick={addBirthday}>
+          Add birthday
+        </button>
+      </form>
     </div>
   );
 }
