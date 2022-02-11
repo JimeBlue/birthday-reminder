@@ -1,5 +1,6 @@
 import './App.css';
 import React, { useState } from 'react';
+import Button from '@mui/material/Button';
 
 function App() {
   const [birthdays, setBirthdays] = useState([]);
@@ -16,7 +17,7 @@ function App() {
   const addBirthday = (event) => {
     event.preventDefault();
     setBirthdays([...birthdays, input]);
-    setInput({ name: '', birthday: '' });
+    setInput({ name: '', birthday: '' }); //Clear up input after clicking add birthday button
   };
 
   return (
@@ -36,9 +37,17 @@ function App() {
           value={input.birthday}
           onChange={handleChange}
         />
-        <button type="submit" onClick={addBirthday}>
+        {/* <button type="submit" onClick={addBirthday}>
           Add birthday
-        </button>
+        </button> */}
+        <Button
+          type="submit"
+          onClick={addBirthday}
+          variant="contained"
+          color="success"
+        >
+          Add birthday
+        </Button>
       </form>
     </div>
   );
