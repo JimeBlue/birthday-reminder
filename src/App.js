@@ -1,23 +1,38 @@
-import logo from './logo.svg';
 import './App.css';
+import React, { useState } from 'react';
 
 function App() {
+  const [birthdays, setBirthdays] = useState([]);
+  const [input, setInput] = useState({});
+  console.log('🙂', input);
+  console.log('🐕', birthdays);
+
+  const handleChange = (event) => {
+    const name = event.target.name;
+    const value = event.target.value;
+    setInput((values) => ({ ...values, [name]: value }));
+  };
+
+  const addBirthday = () => {
+    setBirthdays([...birthdays, input]);
+  };
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Birthday Form</h1>
+      <input
+        type="text"
+        name="name"
+        value={input.name}
+        onChange={handleChange}
+      />
+      <input
+        type="text"
+        name="profession"
+        value={input.profession}
+        onChange={handleChange}
+      />
+
+      <button onClick={addBirthday}>Add birthday</button>
     </div>
   );
 }
