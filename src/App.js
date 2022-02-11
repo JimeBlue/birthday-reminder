@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 
 function App() {
   const [birthdays, setBirthdays] = useState([]);
-  const [input, setInput] = useState({});
+  const [input, setInput] = useState({ name: '', birthday: '' });
   console.log('🙂', input);
   console.log('🐕', birthdays);
 
@@ -16,7 +16,7 @@ function App() {
   const addBirthday = (event) => {
     event.preventDefault();
     setBirthdays([...birthdays, input]);
-    setInput({});
+    setInput({ name: '', birthday: '' });
   };
 
   return (
@@ -25,14 +25,15 @@ function App() {
       <form>
         <input
           type="text"
+          placeholder="add name"
           name="name"
           value={input.name}
           onChange={handleChange}
         />
         <input
-          type="text"
-          name="profession"
-          value={input.profession}
+          type="date"
+          name="birthday"
+          value={input.birthday}
           onChange={handleChange}
         />
         <button type="submit" onClick={addBirthday}>
