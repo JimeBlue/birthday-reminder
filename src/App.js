@@ -1,6 +1,6 @@
 import './App.css';
 import React, { useState } from 'react';
-import Button from '@mui/material/Button';
+import { Button, FormControl, Input } from '@mui/material';
 
 function App() {
   const [birthdays, setBirthdays] = useState([]);
@@ -22,29 +22,33 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Birthday Form</h1>
       <form>
-        <input
-          type="text"
-          placeholder="add name"
-          name="name"
-          value={input.name}
-          onChange={handleChange}
-        />
-        <input
-          type="date"
-          name="birthday"
-          value={input.birthday}
-          onChange={handleChange}
-        />
-        {/* <button type="submit" onClick={addBirthday}>
-          Add birthday
-        </button> */}
+        <h1>Birthday Reminder</h1>
+        <FormControl>
+          <Input
+            type="text"
+            placeholder="add name"
+            name="name"
+            value={input.name}
+            onChange={handleChange}
+          />
+        </FormControl>
+
+        <FormControl>
+          <Input
+            type="date"
+            name="birthday"
+            value={input.birthday}
+            onChange={handleChange}
+          />
+        </FormControl>
+
         <Button
+          disabled={!input.name || !input.birthday}
           type="submit"
           onClick={addBirthday}
           variant="contained"
-          color="success"
+          color="primary"
         >
           Add birthday
         </Button>
