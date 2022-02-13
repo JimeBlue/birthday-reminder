@@ -1,6 +1,7 @@
 import './App.css';
 import React, { useState } from 'react';
 import { Button, FormControl, Input } from '@mui/material';
+import BirthdaysList from './components/BirthdaysList';
 
 function App() {
   const [birthdays, setBirthdays] = useState([]);
@@ -53,6 +54,10 @@ function App() {
           Add birthday
         </Button>
       </form>
+
+      {birthdays.map((birthday) => (
+        <BirthdaysList birthday={birthday} key={birthday.name} />
+      ))}
     </div>
   );
 }
