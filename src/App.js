@@ -3,11 +3,24 @@ import React, { useState } from 'react';
 import { Button, FormControl, Input } from '@mui/material';
 import BirthdaysList from './components/BirthdaysList';
 
+const d = new Date();
+
+const month = d.getMonth(); // Month
+const day = d.getDate(); // Day
+const y = d.getFullYear(); // Year
+
 function App() {
   const [birthdays, setBirthdays] = useState([]);
   const [input, setInput] = useState({ name: '', birthday: '' });
-  console.log('🙂', input);
-  console.log('🐕', birthdays);
+  const filteredBirthdays = birthdays.filter(
+    (birthday) =>
+      birthday.birthday.includes(`${day}`) &&
+      birthday.birthday.includes(`${month}`)
+  );
+
+  console.log('📱', y);
+  console.log('🎂', birthdays);
+  console.log('🚀', filteredBirthdays);
 
   const handleChange = (event) => {
     const name = event.target.name;
@@ -57,6 +70,13 @@ function App() {
 
       {birthdays.map((birthday) => (
         <BirthdaysList birthday={birthday} key={birthday.name} />
+      ))}
+      <h1>Today´s birthday</h1>
+      {filteredBirthdays.map((todayBirthday) => (
+        <ul key={todayBirthday.name}>
+          <li>{todayBirthday.name}</li>
+          {/* <li>{todayBirthday.birthday}</li> */}
+        </ul>
       ))}
     </div>
   );
