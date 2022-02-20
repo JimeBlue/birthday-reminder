@@ -4,10 +4,8 @@ import { Button, FormControl, Input } from '@mui/material';
 import BirthdaysList from './components/BirthdaysList';
 
 const d = new Date();
-
 const month = d.getMonth(); // Month
 const day = d.getDate(); // Day
-const y = d.getFullYear(); // Year
 
 function App() {
   const [birthdays, setBirthdays] = useState([]);
@@ -15,10 +13,9 @@ function App() {
   const filteredBirthdays = birthdays.filter(
     (birthday) =>
       birthday.birthday.includes(`${day}`) &&
-      birthday.birthday.includes(`${month}`)
+      birthday.birthday.includes(`${month + 1}`)
   );
 
-  console.log('📱', y);
   console.log('🎂', birthdays);
   console.log('🚀', filteredBirthdays);
 
@@ -75,7 +72,7 @@ function App() {
       {filteredBirthdays.map((todayBirthday) => (
         <ul key={todayBirthday.name}>
           <li>{todayBirthday.name}</li>
-          {/* <li>{todayBirthday.birthday}</li> */}
+          <li>{todayBirthday.birthday}</li>
         </ul>
       ))}
     </div>
